@@ -6,79 +6,82 @@
 // When the user performs one of the operations, output the result to another DOM element of your choice.
 
 var outputAnswer = document.getElementById("answerBox");
+var first = document.getElementById("firstNum");
+var second = document.getElementById("secondNum");
 
-var addBut = document.getElementById("add");
-  addBut.addEventListener("click", addEm);
-var subtractBut = document.getElementById("subtract");
-  subtractBut.addEventListener("click", subtractEm);
-var multiplyBut = document.getElementById("multiply");
-  multiplyBut.addEventListener("click", multiplyEm);
-var divideBut = document.getElementById("divide");
-  divideBut.addEventListener("click", divideEm);
+// var addBut = document.getElementById("add").addEventListener("click", addEm);
 
-/*
-  Create a function that multiplies two numbers
-  passed in as arguments. Return the product.
- */
- function multiplyEm() {
-  var first = document.getElementById("firstNum").value;
-  var second = document.getElementById("secondNum").value;
-  outputAnswer.innerHTML = parseInt(first)*parseInt(second);
-  console.log("multiply", multiplyEm);
- }
+// var divideBut = document.getElementById("subtract").addEventListener("click", subtractEm);
 
-/*
+// var multiplyBut = document.getElementById("multiply").addEventListener("click", multiplyEm);
+
+// var divideBut = document.getElementById("divide").addEventListener("click", divideEm);
+
+// ------------------------------------
+
+//pass anon function after event listener
+document.getElementById("add").addEventListener("click", function() {
+  //calculate first, second, then call the function that does the work
+  calculate(first.value, second.value, addEm)
+});
+document.getElementById("subtract").addEventListener("click", function() {
+  calculate(first.value, second.value, subtractEm)
+});
+document.getElementById("multiply").addEventListener("click", function() {
+  calculate(first.value, second.value, multiplyEm)
+});
+document.getElementById("divide").addEventListener("click", function() {
+  calculate(first.value, second.value, divideEm)
+});
+
+//give calculate function using references to first, second, and function (ie:addEm)
+function calculate(firstNum, secondNum, operate){
+  //run function using first and second
+  operate(firstNum, secondNum);
+} 
+
+// -------------------------------------
+
+ /*
   Create a function that adds two numbers
   passed in as arguments. Return the sum.
  */
-function addEm() {
-  var first = document.getElementById("firstNum").value;
-  var second = document.getElementById("secondNum").value;
+function addEm(first, second) {
   outputAnswer.innerHTML = parseInt(first) + parseInt(second);
-  console.log("add", addEm);
 }
 
 /*
   Create a function that subtracts two numbers
   passed in as arguments. Return the difference.
  */
- function subtractEm() {
-  var first = document.getElementById("firstNum").value;
-  var second = document.getElementById("secondNum").value;
-  outputAnswer.innerHTML = parseInt(first) - parseInt(second);
-  console.log("sub", subtractEm);
- }
+function subtractEm(first, second) {
+outputAnswer.innerHTML = parseInt(first) - parseInt(second);
+
+}
+
+/*
+  Create a function that multiplies two numbers
+  passed in as arguments. Return the product.
+ */
+function multiplyEm(first, second) {
+outputAnswer.innerHTML = parseInt(first)*parseInt(second);
+}
 
 /*
   Create a function that divides two numbers
   passed in as arguments. Return the quotient.
  */
-function divideEm() {
-  var first = document.getElementById("firstNum").value;
-  var second = document.getElementById("secondNum").value;
+function divideEm(first, second) {
   outputAnswer.innerHTML = parseInt(first) / parseInt(second);
-  console.log("divide", divideEm);
 }
 
 
-/*
-  Create a function that accepts three arguments.
-    1. First number
-    2. Second number
-    3. A function that performs an operation on them
+    /*
+      Create a function that accepts three arguments.
+        1. First number
+        2. Second number
+        3. A function that performs an operation on them
 
-  Return the value of the operation.
- */
-
-// function operateIt(firstnumber, secondnumber, doitfunction) {
-
-//   return value
-// } 
-
-
-//---reminderjunk---
-// var phrase = "Hey, look at me!";
-// var element = document.getElementById("container");
-// element.innerHTML = phrase;
-
+      Return the value of the operation.
+     */
 
